@@ -4,7 +4,7 @@ const renderer = new THREE.WebGLRenderer({ antialias: true})
 
 renderer.setSize( window.innerWidth, window.innerHeight )
 // sets renderer background color
-renderer.setClearColor("#222222")
+renderer.setClearColor("#5b3072")
 document.body.appendChild( renderer.domElement )
 camera.position.z = 5
 
@@ -18,13 +18,21 @@ window.addEventListener( 'resize', () => {
 })
 
 // basic cube
-var geometry = new THREE.BoxGeometry( 1, 1, 1)
-var material = new THREE.MeshStandardMaterial( { color: 0xff0051, flatShading: true, metalness: 0, roughness: 1 })
-var cube = new THREE.Mesh ( geometry, material )
-scene.add( cube )
+//var geometry = new THREE.BoxGeometry( 1, 1, 1)
+//var material = new THREE.MeshStandardMaterial( { color: 0xe0bb00, flatShading: true, metalness: 0, roughness: 1 })
+//var cube = new THREE.Mesh ( geometry, material )
+//scene.add( cube )
+
+//basic ConeGeometry
+var geometry = new THREE.ConeGeometry( 1, 2.5, 8 );
+var material = new THREE.MeshBasicMaterial( {color: 0x6d1927,flatShading: true, metalness: 0, roughness: 1} );
+var cone = new THREE.Mesh( geometry, material );
+scene.add( cone );
+
+
 
 // wireframe cube
-var geometry = new THREE.BoxGeometry( 3, 3, 3)
+var geometry = new THREE.BoxGeometry( 4, 4, 4)
 var material = new THREE.MeshBasicMaterial( {
 	color: "#dadada", wireframe: true, transparent: true
 })
@@ -43,8 +51,11 @@ scene.add( pointLight );
 
 function animate() {
 	requestAnimationFrame( animate )
-	cube.rotation.x += 0.04;
-	cube.rotation.y += 0.04;
+//	cube.rotation.x += 0.04;
+//	cube.rotation.y += 0.04;
+		cone.rotation.x += 0.04;
+		cone.rotation.y += 0.04;
+
 	wireframeCube.rotation.x -= 0.01;
 	wireframeCube.rotation.y -= 0.01;
 	renderer.render( scene, camera )
